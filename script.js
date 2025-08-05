@@ -160,6 +160,16 @@ btnTransfer.addEventListener("click", e => {
   }
 });
 
+btnLoan.addEventListener("click", e => {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= 0.1 * amount)) {
+    currentAccount.movements.push(amount);
+    updateUI(currentAccount);
+  }
+  inputLoanAmount.value = "";
+});
+
 btnClose.addEventListener("click", e => {
   e.preventDefault();
 
@@ -306,5 +316,20 @@ btnClose.addEventListener("click", e => {
 
 // console.log(totalUSD);
 
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 // const euroToUSD = 1.1;
+
+// console.log(movements.includes(-130));
+
+// const anyDeposits = movements.some(mov => mov > 0);
+// console.log(anyDeposits);
+
+// console.log(account4.movements.every(mov => mov > 0));
+// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+// const arr = [[1, 2, 3], [4, 5, 6], 7, 8];
+// console.log(arr.flat());
+// const arrDeep = [[[1, 2], 3], [4, [5, 6]], 7, 8];
+// console.log(arrDeep.flat(2));
+// const accountMovements = accounts.map(acc => acc.movements).flat();
+// console.log(accountMovements);
+// const overallBalance = accountMovements.reduce((acc, mov) => acc + mov, 0);
+// console.log(overallBalance);
